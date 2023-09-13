@@ -1,17 +1,20 @@
 package com.smk.cashier.service;
 
 import com.smk.cashier.model.Barang;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BarangServiceTest {
 
     @org.junit.jupiter.api.Test
-    @Order(2)
+    @Order(1)
     void addBarang() {
         Barang laptop = new Barang();
         laptop.setKodeBarang("LP001");
@@ -19,14 +22,16 @@ class BarangServiceTest {
         laptop.setHargaBarang(5000000);
         BarangService.getInstance()
                 .addBarang(laptop);
-        List<Barang> barangList
-                = BarangService
-                .getInstance()
-                .getBarangList();
-        assertEquals(barangList.size(),1);
+
+        Barang mouse = new Barang();
+        mouse.setKodeBarang("MO001");
+        mouse.setNamaBarang("Mouse");
+        mouse.setHargaBarang(100000);
+        BarangService.getInstance()
+                .addBarang(mouse);
     }
-    @org.junit.jupiter.api.Test
-    @Order(100)
+    @Test
+    @Order(2)
     void getBarangList() {
         List<Barang> barangList
             = BarangService

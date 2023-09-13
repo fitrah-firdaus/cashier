@@ -56,6 +56,13 @@ public class BarangService {
     }
 
     private void writeFile(){
+        try {
+            barangServiceWriter = new
+                    FileWriter
+                    ("barang.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         BufferedWriter bufferedWriter
             = new BufferedWriter(
                     barangServiceWriter
@@ -84,7 +91,7 @@ public class BarangService {
             }
         }
         try {
-            bufferedWriter.close();
+            bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
